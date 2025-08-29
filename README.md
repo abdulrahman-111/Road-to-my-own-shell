@@ -115,7 +115,7 @@ Micro Shell Prompt >
 ##  Author
 
 **Abdulrahman Gomaa**  
-Contact: [your-email@example.com]
+Contact: [abdulrahman.gomaa.h05@gmail.com]
 
 ---
 
