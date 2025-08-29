@@ -1,65 +1,113 @@
 
-# Road to My Own Shell
+# Mini Unix Utilities in C
 
-A collection of simple Linux command-line utilities I built as stepping stones toward writing my own shell from scratch.  
-Each utility focuses on learning system calls, process management, and the internals of how commands work in Linux.
+This repository contains simplified implementations of common Unix commands written in C:
+- **cp**: Copy files
+- **mv**: Move files (copy + delete)
+- **echo**: Print text to standard output
+- **cat**: Print file contents to standard output
+- **pwd**: Print the current working directory
 
-This repository documents my learning journey, starting from small tools like a custom `cat` command to gradually building a fully functional shell.
-
----
-
-## About the Project
-This project is my personal journey to understand how Linux commands, shells, and system calls work.
-
-- **Goal:** Build my own shell from scratch.
-- **Approach:** Start small with custom utilities → learn system calls → combine everything into a shell.
+These implementations are for learning purposes and mimic the basic functionality of the real commands.
 
 ---
 
-## Utilities Implemented
+## Compilation
 
-- **mycat:** A simple `cat` implementation using `open`, `read`, `write`, and `close`.
-- Future utilities: `myecho`, `mypwd`, `myls`, etc.
+You can compile all utilities separately using `gcc`.  
+For example:
 
----
-
-## Features
-
-- Written in C using low-level system calls.
-- No external libraries—pure Linux fundamentals.
-- Incremental learning approach documented step by step.
-
----
-
-## Learning Outcomes
-
-- How commands are just executable programs.
-- The role of shell vs. kernel.
-- Basics of process creation and system calls.
-
----
-
-## Usage
-
-### Compile
 ```bash
-gcc mycat.c -o mycat
+# Compile cp
+gcc cp.c -o cp
+
+# Compile mv
+gcc mv.c -o mv
+
+# Compile echo
+gcc echo.c -o echo
+
+# Compile cat
+gcc cat.c -o cat
+
+# Compile pwd
+gcc pwd.c -o pwd
 ```
 
-### Run
+Or compile them all at once:
 ```bash
-./mycat file1.txt file2.txt
+gcc cp.c -o cp && gcc mv.c -o mv && gcc echo.c -o echo && gcc cat.c -o cat && gcc pwd.c -o pwd
 ```
 
 ---
 
-## Future Plans
+## Usage and Examples
 
-- Add more commands (e.g., `myls`, `mymkdir`).
-- Implement a basic shell supporting command execution, pipes, and redirection.
+### 1. Copy (`cp`)
+Copies content of one file to another.
+```bash
+./cp source.txt dest.txt
+```
+**Output:**
+```
+(source.txt contents copied to dest.txt)
+```
 
 ---
 
-## License
+### 2. Move (`mv`)
+Copies the file to the new location, then deletes the original.
+```bash
+./mv source.txt dest.txt
+```
+**Output:**
+```
+(source.txt moved to dest.txt)
+```
 
-This project is open-source 
+---
+
+### 3. Echo (`echo`)
+Prints text to standard output.
+```bash
+./echo Hello World
+```
+**Output:**
+```
+Hello World
+```
+
+---
+
+### 4. Cat (`cat`)
+Prints file content to standard output.
+```bash
+./cat file.txt
+```
+**Output:**
+```
+(contents of file.txt displayed)
+```
+
+---
+
+### 5. Print Working Directory (`pwd`)
+Displays the current directory path.
+```bash
+./pwd
+```
+**Output:**
+```
+/home/user/project
+```
+
+---
+
+## Notes
+- These are simplified versions and do not include all options/features of real Unix commands.
+- Error handling for invalid files, missing arguments, etc., is included.
+
+---
+
+## Author
+Abdulrahman Hassan – Computer Engineering Student, EUI  
