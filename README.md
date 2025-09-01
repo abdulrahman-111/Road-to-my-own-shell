@@ -1,113 +1,128 @@
+#  Road-to-My-Own-Shell
 
-# Mini Unix Utilities in C
-
-This repository contains simplified implementations of common Unix commands written in C:
-- **cp**: Copy files
-- **mv**: Move files (copy + delete)
-- **echo**: Print text to standard output
-- **cat**: Print file contents to standard output
-- **pwd**: Print the current working directory
-
-These implementations are for learning purposes and mimic the basic functionality of the real commands.
+A collection of custom command-line utilities and progressively advanced shell implementations in C, created by **Abdulrahman Gomaa**. Starting from basic commands and culminating in a fully integrated **Micro Shell**, this project demonstrates a step-by-step journey in building a functional shell environment.
 
 ---
 
-## Compilation
+##  Repository Contents
 
-You can compile all utilities separately using `gcc`.  
-For example:
-
-```bash
-# Compile cp
-gcc cp.c -o cp
-
-# Compile mv
-gcc mv.c -o mv
-
-# Compile echo
-gcc echo.c -o echo
-
-# Compile cat
-gcc cat.c -o cat
-
-# Compile pwd
-gcc pwd.c -o pwd
-```
-
-Or compile them all at once:
-```bash
-gcc cp.c -o cp && gcc mv.c -o mv && gcc echo.c -o echo && gcc cat.c -o cat && gcc pwd.c -o pwd
-```
+| Component          | Description                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| `echo.c`           | Custom `echo` implementation — prints command-line arguments.               |
+| `pwd.c`            | Prints the current working directory, mimicking `pwd` command.              |
+| `cd.c`             | `cd` implementation — changes the shell's current working directory.        |
+| `cp.c`             | Copies files from source to destination, like `cp`.                        |
+| `mv.c`             | Moves or renames files, similar to `mv`.                                   |
+| `femto_shell.c`    | First minimal shell — executes simple external commands.                   |
+| `pico_shell.c`     | Enhanced shell with basic command parsing, error codes, and history.       |
+| `nano_shell.c`     | Adds input/output/error redirection (`<`, `>`, `2>`), improving utility.    |
+| `micro_shell.c`    | **Final integrated shell** — supports all utilities, variables, redirection, built-ins, and environment. |
 
 ---
 
-## Usage and Examples
+##  Compilation
 
-### 1. Copy (`cp`)
-Copies content of one file to another.
+Compile each utility or shell individually:
 ```bash
-./cp source.txt dest.txt
+gcc -o echo echo.c
+gcc -o pwd pwd.c
+gcc -o cd cd.c
+gcc -o cp cp.c
+gcc -o mv mv.c
+gcc -o femto femto_shell.c
+gcc -o pico pico_shell.c
+gcc -o nano nano_shell.c
+gcc -o micro micro_shell.c
 ```
-**Output:**
-```
-(source.txt contents copied to dest.txt)
+
+Or compile everything in one go (Linux/macOS):
+```bash
+for src in *.c; do gcc -o "${src%.c}" "$src"; done
 ```
 
 ---
 
-### 2. Move (`mv`)
-Copies the file to the new location, then deletes the original.
-```bash
-./mv source.txt dest.txt
-```
-**Output:**
-```
-(source.txt moved to dest.txt)
-```
+##  Usage Examples
 
----
-
-### 3. Echo (`echo`)
-Prints text to standard output.
+### Individual Utilities:
 ```bash
-./echo Hello World
-```
-**Output:**
-```
+$ ./echo Hello World
 Hello World
+
+$ ./pwd
+/home/user
+
+$ ./cd /tmp
+$ ./pwd
+/tmp
+
+$ ./cp source.txt copy.txt
+$ ./mv old.txt new.txt
 ```
 
 ---
 
-### 4. Cat (`cat`)
-Prints file content to standard output.
-```bash
-./cat file.txt
+### Shell Versions:
+
+#### femto_shell
+Basic command execution:
 ```
-**Output:**
+Nano Shell Prompt > ls -l
+[output of ls]
+Nano Shell Prompt >
 ```
-(contents of file.txt displayed)
+
+#### pico_shell
+Better input handling and exit codes.
+
+#### nano_shell
+Supports redirections:
+```
+Nano Shell Prompt > cat < input.txt
+[contents of input.txt]
+Nano Shell Prompt >
+
+Nano Shell Prompt > ls non_existing 2> err.log
+Nano Shell Prompt >
+```
+
+#### micro_shell (Final Version)
+Full-featured, integrates all utilities:
+
+- Command execution  
+- Redirection support  
+- Variable assignment & expansion  
+- Built-ins: `echo`, `pwd`, `cd`, `export`  
+- Environment handling
+
+Example:
+```
+Micro Shell Prompt > YOU_ARE=a_programmer
+Micro Shell Prompt > echo $YOU_ARE
+a_programmer
+Micro Shell Prompt >
 ```
 
 ---
 
-### 5. Print Working Directory (`pwd`)
-Displays the current directory path.
-```bash
-./pwd
-```
-**Output:**
-```
-/home/user/project
-```
+##  Exit Codes
+
+- `0` — success  
+- `1` — failure (e.g., invalid command, file not found, wrong syntax)
 
 ---
 
-## Notes
-- These are simplified versions and do not include all options/features of real Unix commands.
-- Error handling for invalid files, missing arguments, etc., is included.
+##  Author
+
+**Abdulrahman Gomaa**  
+Contact: [abdulrahman.gomaa.h05@gmail.com]
 
 ---
 
-## Author
-Abdulrahman Hassan – Computer Engineering Student, EUI  
+##  Notes
+
+- The shell implementation evolved from `femto` → `pico` → `nano` → `micro`.
+- `micro_shell.c` is the final, integrated version that brings together all utility implementations and features.
+- Feel free to explore each file to follow the learning progression.
+
+---
